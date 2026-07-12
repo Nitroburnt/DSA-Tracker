@@ -1,26 +1,185 @@
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Orbitron:wght@400..900&display=swap');
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@theme {
+  --font-orbitron: 'Orbitron', sans-serif;
+  --font-chakra: 'Chakra Petch', sans-serif;
+  
+  --color-neon: #00FF66;
+  --color-cyan: #00E5FF;
+  --color-dark-bg: #000000;
+  --color-dark-surface: #0B0B0F;
+  --color-dark-card: #121214;
+  --color-cyber-border: #1F1F2E;
+  
+  --animate-neon-pulse: neon-pulse 2s infinite alternate;
+  
+  @keyframes neon-pulse {
+    0% {
+      box-shadow: 0 0 4px rgba(0, 255, 102, 0.2), 0 0 12px rgba(0, 255, 102, 0.1);
+    }
+    100% {
+      box-shadow: 0 0 8px rgba(0, 255, 102, 0.4), 0 0 20px rgba(0, 255, 102, 0.2);
+    }
   }
 }
 
+:root {
+  --background: #000000;
+  --foreground: #E2E8F0;
+}
+
+html {
+  font-size: 17px;
+}
+
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Chakra Petch', sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Cyberpunk Scroller — global */
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0B0B0F;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #00E5FF;
+  border-radius: 2px;
+  box-shadow: 0 0 6px rgba(0, 229, 255, 0.5);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #00E5FF;
+  box-shadow: 0 0 12px #00E5FF;
+}
+
+/* Force dark scrollbar on all overflow containers */
+* {
+  scrollbar-color: #00E5FF #0B0B0F;
+  scrollbar-width: thin;
+  color-scheme: dark;
+}
+
+/* SimpleBar custom neon theme */
+.simplebar-scrollbar::before {
+  background: #00E5FF !important;
+  box-shadow: 0 0 6px rgba(0, 229, 255, 0.7) !important;
+  border-radius: 2px !important;
+  opacity: 1 !important;
+  left: 0 !important;
+  right: 0 !important;
+  top: 0 !important;
+  bottom: 0 !important;
+}
+
+.simplebar-scrollbar.simplebar-visible::before {
+  opacity: 1 !important;
+  transition: none !important;
+}
+
+/* Keep thumb visible even when not dragging */
+.simplebar-scrollbar:not(.simplebar-visible)::before {
+  opacity: 0.5 !important;
+}
+
+.simplebar-track {
+  background: #111118 !important;
+  border-radius: 2px !important;
+}
+
+/* Horizontal track — sits at the bottom */
+.simplebar-track.simplebar-horizontal {
+  height: 6px !important;
+  bottom: 4px !important;
+  left: 0 !important;
+  right: 0 !important;
+}
+
+.simplebar-track.simplebar-horizontal .simplebar-scrollbar {
+  height: 6px !important;
+  top: 0 !important;
+  bottom: 0 !important;
+  min-width: 30px !important;
+}
+
+/* Vertical track */
+.simplebar-track.simplebar-vertical {
+  width: 6px !important;
+  top: 0 !important;
+  right: 2px !important;
+}
+
+.simplebar-track.simplebar-vertical .simplebar-scrollbar {
+  width: 6px !important;
+  left: 0 !important;
+  right: 0 !important;
+  min-height: 30px !important;
+}
+/* Snappy Cyber Transitions */
+.cyber-transition {
+  transition: all 0.15s ease-out;
+}
+
+/* Custom Checkbox Reset for styling */
+.cyber-checkbox {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-color: #1a1a2e;
+  border: 1.5px solid #64748b;
+  width: 18px;
+  height: 18px;
+  border-radius: 2px;
+  cursor: pointer;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.1s ease-out;
+  flex-shrink: 0;
+  color-scheme: normal;
+}
+
+.cyber-checkbox:hover {
+  border-color: #00E5FF;
+  box-shadow: 0 0 8px rgba(0, 229, 255, 0.4);
+}
+
+.cyber-checkbox:checked {
+  border-color: #00FF66;
+  background-color: rgba(0, 255, 102, 0.1);
+  box-shadow: 0 0 10px rgba(0, 255, 102, 0.5);
+}
+
+.cyber-checkbox:checked::after {
+  content: "";
+  width: 8px;
+  height: 8px;
+  background-color: #00FF66;
+  box-shadow: 0 0 6px #00FF66;
+  border-radius: 1px;
+  display: block;
+}
+
+.cyber-checkbox:disabled {
+  cursor: not-allowed;
+  opacity: 1;
+}
+
+/* Cyber Terminal Glow effect */
+.cyber-glow-green {
+  text-shadow: 0 0 8px rgba(0, 255, 102, 0.6);
+}
+
+.cyber-glow-cyan {
+  text-shadow: 0 0 8px rgba(0, 229, 255, 0.6);
 }
