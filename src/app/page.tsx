@@ -430,7 +430,7 @@ export default function HomePage() {
                     <div className="overflow-x-auto w-full">
                       <table className="w-full text-left font-chakra border-collapse text-xs select-none">
                         <thead>
-                          <tr className="border-b border-cyber-border text-slate-500 uppercase tracking-wider text-[10px]">
+                          <tr className="border-b border-cyber-border text-slate-500 uppercase tracking-wider text-xs">
                             <th className="py-2.5 px-3 w-16">Day</th>
                             <th className="py-2.5 px-3">Problem Name</th>
                             <th className="py-2.5 px-3 w-28 text-center">Strike Link</th>
@@ -450,12 +450,12 @@ export default function HomePage() {
                                   }`}
                                 >
                                   {/* Day Number */}
-                                  <td className="py-3 px-3 font-semibold text-slate-500 text-left">
+                                  <td className="py-3 px-3 font-semibold text-slate-400 text-left text-sm">
                                     {prob.day_number}
                                   </td>
                                   
                                   {/* Problem Name */}
-                                  <td className="py-3 px-3 font-medium tracking-wide">
+                                  <td className="py-3 px-3 font-medium tracking-wide text-sm">
                                     {prob.problem_name}
                                   </td>
                                   
@@ -466,7 +466,7 @@ export default function HomePage() {
                                         href={prob.link_1}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="text-cyan hover:text-cyan/80 flex items-center justify-center gap-0.5 underline decoration-dotted underline-offset-4 cyber-transition whitespace-nowrap"
+                                        className="text-cyan hover:text-cyan/80 flex items-center justify-center gap-0.5 underline decoration-dotted underline-offset-4 cyber-transition whitespace-nowrap text-sm"
                                       >
                                         <span>Link 1</span>
                                         <ExternalLink size={10} />
@@ -483,7 +483,7 @@ export default function HomePage() {
                                         href={prob.link_2}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="text-slate-400 hover:text-cyan flex items-center justify-center gap-0.5 underline decoration-dotted underline-offset-4 cyber-transition whitespace-nowrap"
+                                        className="text-slate-400 hover:text-cyan flex items-center justify-center gap-0.5 underline decoration-dotted underline-offset-4 cyber-transition whitespace-nowrap text-sm"
                                       >
                                         <span>Link 2</span>
                                         <ExternalLink size={10} />
