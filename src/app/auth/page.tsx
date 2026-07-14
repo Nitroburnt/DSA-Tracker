@@ -157,7 +157,7 @@ export default function AuthPage() {
         {/* Card Header */}
         <div className="text-center mb-8">
           <h1 className="font-orbitron text-2xl md:text-3xl font-extrabold tracking-widest text-slate-100 uppercase">
-            CODER ARMY
+            DSA TRACKER
           </h1>
         </div>
 

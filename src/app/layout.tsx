@@ -3,8 +3,8 @@ import "./globals.css";
 import { AuthProvider } from "@/context/AuthContext";
 
 export const metadata: Metadata = {
-  title: "CODER ARMY | Cyber DSA Tracker",
-  description: "A high-tech, ultra-minimalistic, and snapping fast cyberpunk DSA tracker.",
+  title: "DSA Tracker",
+  description: "Track your DSA progress with streaks, history, and a curriculum grid.",
 };
 
 export default function RootLayout({

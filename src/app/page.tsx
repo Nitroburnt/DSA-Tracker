@@ -28,6 +28,14 @@ export default function HomePage() {
   const [activeTopic, setActiveTopic] = useState<string | null>(null); // For active styling
   const [collapsedTopics, setCollapsedTopics] = useState<Record<string, boolean>>({});
   const [guestStreaks, setGuestStreaks] = useState({ current: 0, max: 0 });
+  const [liveStreaks, setLiveStreaks] = useState({ current: 0, max: 0 });
+
+  // Sync liveStreaks whenever the user object changes (login, page load)
+  useEffect(() => {
+    if (user) {
+      setLiveStreaks({ current: user.current_streak, max: user.max_streak });
+    }
+  }, [user]);
 
   // Admin Modal state
   const [showAdminModal, setShowAdminModal] = useState(false);
@@ -144,6 +152,8 @@ export default function HomePage() {
       if (!res.success) {
         throw new Error(res.error || 'Server rejected transaction.');
       }
+      // Update streaks immediately without requiring a page reload
+      setLiveStreaks({ current: res.current_streak, max: res.max_streak });
     } catch (err: any) {
       // 3. Revert Optimistic state if DB write fails
       setCompletions(prev => ({
@@ -250,8 +260,8 @@ export default function HomePage() {
     ? (user?.email?.split('@')[0] ?? 'Guest')
     : rawDisplayName;
   const displayEmail  = isGuest ? ''      : user!.email;
-  const currentStreak = isGuest ? guestStreaks.current : user!.current_streak;
-  const maxStreak     = isGuest ? guestStreaks.max     : user!.max_streak;
+  const currentStreak = isGuest ? guestStreaks.current : liveStreaks.current;
+  const maxStreak     = isGuest ? guestStreaks.max     : liveStreaks.max;
 
   return (
     <div className="flex-1 flex flex-col min-h-screen bg-black text-slate-300 relative pb-16">
@@ -266,7 +276,7 @@ export default function HomePage() {
           <div className="flex items-center gap-3">
             <Zap className="text-neon animate-pulse" size={20} />
             <h1 className="font-orbitron text-xl md:text-2xl font-black tracking-widest text-slate-100 uppercase select-none">
-              CODER ARMY
+              DSA TRACKER
             </h1>
           </div>
 
